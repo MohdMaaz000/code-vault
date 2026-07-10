@@ -38,7 +38,7 @@ Note that the code stub provided reads from STDIN and passes arguments to the `i
 | Language | python3 |
 | Score | 10.0 |
 | Testcases | 6/6 passed |
-| Submission ID | 476663640 |
+| Submission ID | 476663646 |
 
 ---
 
