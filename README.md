@@ -1,4 +1,4 @@
-# Python_HackerRank
+# Daily_Commit
 
 Archive of accepted coding challenge solutions, synced by [AlgorithmHub](https://github.com/dev-minsoo/AlgorithmHub).
 
@@ -8,8 +8,8 @@ Archive of accepted coding challenge solutions, synced by [AlgorithmHub](https:/
 | --- | ---: |
 | LeetCode | 0 |
 | 프로그래머스 | 0 |
-| HackerRank | 17 |
-| Total | 17 |
+| HackerRank | 18 |
+| Total | 18 |
 
 ## Platforms
 
