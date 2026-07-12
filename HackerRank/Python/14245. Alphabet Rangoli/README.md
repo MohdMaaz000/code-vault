@@ -85,7 +85,7 @@ Complete the *rangoli* function in the editor below.
 | Language | python3 |
 | Score | 20.0 |
 | Testcases | 8/8 passed |
-| Submission ID | 476800723 |
+| Submission ID | 476800730 |
 
 ---
 
