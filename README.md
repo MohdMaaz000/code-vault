@@ -8,8 +8,8 @@ Archive of accepted coding challenge solutions, synced by [AlgorithmHub](https:/
 | --- | ---: |
 | LeetCode | 19 |
 | 프로그래머스 | 0 |
-| HackerRank | 127 |
-| Total | 146 |
+| HackerRank | 128 |
+| Total | 147 |
 
 ## Platforms
 
