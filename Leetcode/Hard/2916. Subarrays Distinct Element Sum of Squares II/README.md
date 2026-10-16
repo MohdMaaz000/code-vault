@@ -68,9 +68,9 @@ The sum of the squares of the distinct counts in all subarrays is equal to 1<sup
 | --- | --- |
 | Status | Accepted |
 | Language | Python3 |
-| Runtime | 4445 ms (55.17%) |
-| Memory | 123.6 MB (24.14%) |
-| Submission ID | 2173625420 |
+| Runtime | 6782 ms (10.34%) |
+| Memory | 45.4 MB (79.31%) |
+| Submission ID | 2173628443 |
 
 ---
 

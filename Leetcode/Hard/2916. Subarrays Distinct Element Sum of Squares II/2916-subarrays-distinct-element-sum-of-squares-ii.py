@@ -4,49 +4,71 @@ class Solution:
     def sumCounts(self, nums: List[int]) -> int:
         MOD = 10**9 + 7
         n = len(nums)
-        tree_sum = [0] * (4 * n)
-        tree_sq = [0] * (4 * n)
-        lazy = [0] * (4 * n)
+        size = 1
+        while size < n:
+            size <<= 1
 
-        def apply(node, l, r, val):
-            length = r - l + 1
-            s = tree_sum[node]
-            tree_sq[node] = (tree_sq[node] + 2 * val * s + length * val * val) % MOD
-            tree_sum[node] = (s + length * val) % MOD
-            lazy[node] = (lazy[node] + val) % MOD
+        s = [0] * (2 * size)
+        q = [0] * (2 * size)
+        lazy = [0] * size
+        length = [0] * (2 * size)
 
-        def push(node, l, r):
-            if lazy[node] == 0 or l == r:
-                return
-            mid = (l + r) // 2
-            val = lazy[node]
-            apply(node * 2, l, mid, val)
-            apply(node * 2 + 1, mid + 1, r, val)
-            lazy[node] = 0
+        for i in range(n):
+            length[size + i] = 1
+        for i in range(size - 1, 0, -1):
+            length[i] = length[i * 2] + length[i * 2 + 1]
 
-        def update(node, l, r, ql, qr, val):
-            if ql <= l and r <= qr:
-                apply(node, l, r, val)
-                return
+        def apply(k, v):
+            old = s[k]
+            q[k] = (q[k] + 2 * v * old + length[k] * v * v) % MOD
+            s[k] = (old + length[k] * v) % MOD
+            if k < size:
+                lazy[k] = (lazy[k] + v) % MOD
 
-            push(node, l, r)
-            mid = (l + r) // 2
-
-            if ql <= mid:
-                update(node * 2, l, mid, ql, qr, val)
-            if qr > mid:
-                update(node * 2 + 1, mid + 1, r, ql, qr, val)
-
-            tree_sum[node] = (tree_sum[node * 2] + tree_sum[node * 2 + 1]) % MOD
-            tree_sq[node] = (tree_sq[node * 2] + tree_sq[node * 2 + 1]) % MOD
+        def push(k):
+            if lazy[k]:
+                v = lazy[k]
+                apply(k * 2, v)
+                apply(k * 2 + 1, v)
+                lazy[k] = 0
 
         last = {}
         ans = 0
+        height = size.bit_length() - 1
 
         for i, x in enumerate(nums):
             left = last.get(x, -1) + 1
-            update(1, 0, n - 1, left, i, 1)
+            l = left + size
+            r = i + size
+            l0, r0 = l, r
+
+            for h in range(height, 0, -1):
+                if ((l0 >> h) << h) != l0:
+                    push(l0 >> h)
+                if (((r0 + 1) >> h) << h) != r0 + 1:
+                    push(r0 >> h)
+
+            while l <= r:
+                if l & 1:
+                    apply(l, 1)
+                    l += 1
+                if not (r & 1):
+                    apply(r, 1)
+                    r -= 1
+                l >>= 1
+                r >>= 1
+
+            for h in range(1, height + 1):
+                if ((l0 >> h) << h) != l0:
+                    k = l0 >> h
+                    s[k] = (s[k * 2] + s[k * 2 + 1]) % MOD
+                    q[k] = (q[k * 2] + q[k * 2 + 1]) % MOD
+                if (((r0 + 1) >> h) << h) != r0 + 1:
+                    k = r0 >> h
+                    s[k] = (s[k * 2] + s[k * 2 + 1]) % MOD
+                    q[k] = (q[k * 2] + q[k * 2 + 1]) % MOD
+
             last[x] = i
-            ans = (ans + tree_sq[1]) % MOD
+            ans = (ans + q[1]) % MOD
 
         return ans
