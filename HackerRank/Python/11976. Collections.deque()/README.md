@@ -80,10 +80,10 @@ Perform _append_, _pop_, _popleft_ and _appendleft_ methods on an empty deque $d
 | Item | Value |
 | --- | --- |
 | Status | Accepted |
-| Language | pypy3 |
+| Language | python3 |
 | Score | 20.0 |
 | Testcases | 6/6 passed |
-| Submission ID | 485463865 |
+| Submission ID | 485520471 |
 
 ---
 

@@ -2,18 +2,12 @@ from collections import deque
 
 d = deque()
 
-n = int(input())
+for _ in range(int(input())):
+    command = input().split()
 
-for _ in range(n):
-    operation = input().split()
-
-    if operation[0] == "append":
-        d.append(operation[1])
-    elif operation[0] == "appendleft":
-        d.appendleft(operation[1])
-    elif operation[0] == "pop":
-        d.pop()
-    elif operation[0] == "popleft":
-        d.popleft()
+    if len(command) == 2:
+        getattr(d, command[0])(int(command[1]))
+    else:
+        getattr(d, command[0])()
 
 print(*d)
